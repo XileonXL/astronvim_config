@@ -10,30 +10,32 @@ return {
     -- mappings seen under group name "Buffer"
     ["<leader>bD"] = {
       function()
-        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) require("astronvim.utils.buffer").close(bufnr) end)
+        require("astronvim.utils.status").heirline.buffer_picker(function(bufnr)
+          require("astronvim.utils.buffer").close(
+            bufnr)
+        end)
       end,
       desc = "Pick to close",
     },
     -- tables with the `name` key will be registered with which-key if it's installed
     -- this is useful for naming menus
     ["<leader>b"] = { name = "Buffers" },
-   
+
     -- Save / Close file
-    ["<C-s>"] = { ":w!<cr>", desc = "Save File" }, 
-    ["<C-w>"] = { ":close<cr>" }, 
-    ["<C-q>"] = { ":q<cr>" }, 
+    ["<C-s>"] = { ":w!<cr>", desc = "Save File" },
+    ["<C-q>"] = { ":q<cr>" },
 
     -- Do not copy on register when pressing x
-    ["x"] = { "_x" }, 
+    ["x"] = { "_x" },
 
     -- Split window
-    ["sv"] = { "<C-w>v" }, 
-    ["sh"] = { "<C-w>s" }, 
-    ["se"] = { "<C-w>=" }, 
+    ["sv"] = { "<C-w>v" },
+    ["sh"] = { "<C-w>s" },
+    ["se"] = { "<C-w>=" },
 
     -- Buffers
     ["tn"] =
-      { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
+    { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
     ["tp"] = {
       function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
       desc = "Previous buffer",
@@ -45,20 +47,20 @@ return {
     -- ["<S-h>"] = { ":noh<cr>" },
 
     -- Telescope
-    ["<C-p>"] = { "<cmd>Telescope find_files<cr>" },
-    ["<C-b>"] = { "<cmd>Telescope buffers<cr>" },
-    ["<C-f>"] = { "<cmd>Telescope live_grep<cr>" },
-    ["<C-h>"] = { "<cmd>Telescope help_tags<cr>" },
-    ["<C-g>"] = { "<cmd>Telescope grep_string<cr>" },
+    ["<C-p>"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" },
+    ["<C-b>"] = { function() require("telescope.builtin").buffers() end, desc = "Find buffers" },
+    ["<C-f>"] = { function() require("telescope.builtin").live_grep() end, desc = "Find words" },
+    ["<C-h>"] = { function() require("telescope.builtin").help_tags() end, desc = "Find help" },
+    ["<C-g>"] = { function() require("telescope.builtin").grep_string() end, desc = "Find for word under cursor" },
   },
   t = {
     -- setting a mapping to false will disable it
     -- ["<esc>"] = false,
   },
-  v = { 
+  v = {
     -- Do not copy on register when pressing x
-    ["x"] = { "_x" }, 
-    
+    ["x"] = { "_x" },
+
     -- Maintain tab after using << or >>
     ["<"] = { "<gv" },
     [">"] = { ">gv" },
