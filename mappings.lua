@@ -8,7 +8,6 @@ return {
   n = {
     -- second key is the lefthand side of the map
     -- mappings seen under group name "Buffer"
-    ["<leader>bn"] = { "<cmd>tabnew<cr>", desc = "New tab" },
     ["<leader>bD"] = {
       function()
         require("astronvim.utils.status").heirline.buffer_picker(function(bufnr) require("astronvim.utils.buffer").close(bufnr) end)
@@ -32,14 +31,18 @@ return {
     ["sh"] = { "<C-w>s" }, 
     ["se"] = { "<C-w>=" }, 
 
-    -- Tabs
-    ["<C-n>"] = { ":tabnew<cr>" }, 
-    ["tx"] = { ":tabclose<cr>" }, 
-    ["tn"] = { ":tabn<cr>" }, 
-    ["tp"] = { ":tabp<cr>" }, 
+    -- Buffers
+    ["tn"] =
+      { function() require("astronvim.utils.buffer").nav(vim.v.count > 0 and vim.v.count or 1) end, desc = "Next buffer" },
+    ["tp"] = {
+      function() require("astronvim.utils.buffer").nav(-(vim.v.count > 0 and vim.v.count or 1)) end,
+      desc = "Previous buffer",
+    },
+    ["<C-w>"] = { function() require("astronvim.utils.buffer").close() end, desc = "Close buffer" },
+    ["<C-n>"] = { "<cmd>enew<cr>", desc = "New File" },
 
     -- Quit search highlight until next search
-    ["<S-h>"] = { ":noh<cr>" },
+    -- ["<S-h>"] = { ":noh<cr>" },
 
     -- Telescope
     ["<C-p>"] = { "<cmd>Telescope find_files<cr>" },
