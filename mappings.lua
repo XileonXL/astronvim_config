@@ -50,7 +50,6 @@ return {
     ["<C-p>"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" },
     ["<C-b>"] = { function() require("telescope.builtin").buffers() end, desc = "Find buffers" },
     ["<C-f>"] = { function() require("telescope.builtin").live_grep() end, desc = "Find words" },
-    ["<C-h>"] = { function() require("telescope.builtin").help_tags() end, desc = "Find help" },
     ["<C-g>"] = { function() require("telescope.builtin").grep_string() end, desc = "Find for word under cursor" },
   },
   t = {
