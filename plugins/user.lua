@@ -1,5 +1,14 @@
 return {
-  "bluz71/vim-nightfly-guicolors"
+  "bluz71/vim-nightfly-guicolors",
+  {
+    "glepnir/template.nvim",
+    cmd =  { 'Template', 'TemProject' },
+    config = function()
+      require('template').setup({
+        temp_dir = "~/.config/nvim/lua/user/templates",
+    })
+    end,
+  },
   -- You can also add new plugins here as well:
   -- Add plugins, the lazy syntax
   -- "andweeb/presence.nvim",
