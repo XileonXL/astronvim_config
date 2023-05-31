@@ -22,6 +22,8 @@ return {
   },
 
   { "goolord/alpha-nvim", enabled = false },
+  -- { "nvim-treesitter/nvim-treesitter", enabled = false },
+  -- { "kevinhwang91/nvim-ufo", enabled = false },
   -- You can disable default plugins as follows:
   -- { "max397574/better-escape.nvim", enabled = false },
   --
