@@ -21,7 +21,7 @@ def configure_logger(file_path, level='INFO'):
 
     return logger
 
-def main():
+def main(args):
     {{_cursor_}}
 
 if __name__ == '__main__':
