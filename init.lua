@@ -27,6 +27,7 @@ return {
   },
 
   lsp = {
+    -- set_log_level = "debug",
     -- customize lsp formatting options
     formatting = {
       -- control auto formatting on save
