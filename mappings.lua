@@ -47,10 +47,10 @@ return {
     -- ["<S-h>"] = { ":noh<cr>" },
 
     -- Telescope
-    ["<C-p>"] = { function() require("telescope.builtin").find_files() end, desc = "Find files" },
     ["<C-b>"] = { function() require("telescope.builtin").buffers() end, desc = "Find buffers" },
-    ["<C-f>"] = { function() require("telescope.builtin").live_grep() end, desc = "Find words" },
     ["<C-g>"] = { function() require("telescope.builtin").grep_string() end, desc = "Find for word under cursor" },
+    ["<C-p>"] = { function() require("telescope.builtin").find_files { hidden = true, no_ignore = true } end, desc = "Find files in all files" },
+    ["<C-f>"] = { function() require("telescope.builtin").live_grep { additional_args = function(args) return vim.list_extend(args, { "--hidden", "--no-ignore" }) end } end, desc = "Find words in all files" },
   },
   t = {
     -- setting a mapping to false will disable it
