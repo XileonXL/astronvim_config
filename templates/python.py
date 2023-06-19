@@ -5,7 +5,7 @@ import logging
 from logging.handlers import WatchedFileHandler
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--username', '-u', dest='username', type=str, help='Username', required=True)
+parser.add_argument('--username', '-u', dest='username', type=str, help='Username', required=False)
 
 def configure_logger(file_path, level='INFO'):
     """
