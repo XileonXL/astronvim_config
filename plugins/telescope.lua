@@ -1,22 +1,16 @@
 local actions = require("telescope.actions")
 local action_state = require("telescope.actions.state")
 
-local mm = { -- my mappings
-  ["<CR>"] = function(pb)
-    local picker = action_state.get_current_picker(pb) 
-    local multi = picker:get_multi_selection()
-    actions.select_default(pb) -- the normal enter behaviour
-    for _, j in pairs(multi) do
-      if j.path ~= nil then -- is it a file -> open it as well:
-        vim.cmd(string.format("%s %s", "edit", j.path))
-      end
+local multi_open = function(pb)
+  local picker = action_state.get_current_picker(pb)
+  local multi = picker:get_multi_selection()
+  actions.select_default(pb) -- the normal enter behaviour
+  for _, j in pairs(multi) do
+    if j.path ~= nil then -- is it a file -> open it as well:
+      vim.cmd(string.format("%s %s", "edit", j.path))
     end
-  end,
-  ["<C-n>"] = actions.cycle_history_next,
-  ["<C-p>"] = actions.cycle_history_prev,
-  ["<C-j>"] = actions.move_selection_next,
-  ["<C-k>"] = actions.move_selection_previous,
-}
+  end
+end
 
 return {
   "nvim-telescope/telescope.nvim",
@@ -42,12 +36,16 @@ return {
         },
         mappings = {
           i = {
-            mm
+            ["<CR>"] = multi_open,
+            ["<C-n>"] = actions.cycle_history_next,
+            ["<C-p>"] = actions.cycle_history_prev,
+            ["<C-j>"] = actions.move_selection_next,
+            ["<C-k>"] = actions.move_selection_previous,
           },
           n = {
-            mm,
-            q = actions.close 
-          },
+            ["<CR>"] = multi_open,
+            q = actions.close
+          }
         },
       },
     }
